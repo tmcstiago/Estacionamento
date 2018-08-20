@@ -1,12 +1,14 @@
 from django.contrib import admin
 from . import models
+import math
 
 
 class MovRotativoAdmin(admin.ModelAdmin):
-    list_display = ('__str__','checkin', 'checkout', 'valor_por_hora', 'pago', 'total')
+    list_display = ('__str__','checkin', 'checkout', 'valor_por_hora', 'pago','total')
 
     def valor_por_hora(self, object):
         return object.valor_hora.valor_hora
+        
 
 
 class MovMensalistaAdmin(admin.ModelAdmin):

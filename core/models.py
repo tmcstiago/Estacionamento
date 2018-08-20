@@ -1,5 +1,6 @@
 from django.db import models
 import math
+import datetime
 
 class Pessoa(models.Model):
     nome = models.CharField(max_length=100)
@@ -18,6 +19,7 @@ class Marca(models.Model):
         return self.nome
 
 
+
 class Veiculo(models.Model):
     proprietario = models.ForeignKey(Pessoa, on_delete = models.CASCADE)
     marca = models.ForeignKey(Marca, on_delete=models.CASCADE)
@@ -28,6 +30,7 @@ class Veiculo(models.Model):
 
     def __str__(self):
         return self.modelo + ' - ' + self.placa
+
 
 
 class Parametro(models.Model):
@@ -51,10 +54,14 @@ class MovRotativo(models.Model):
         return math.ceil((self.checkout - self.checkin).total_seconds()/3600)
     
     def total(self):
-        return self.valor_hora.valor_hora * self.horas_total()
+        if(self.checkout == None):
+            return 'Esperando check-out'
+        else:   
+            return 'R$ ' + str(self.valor_hora.valor_hora * self.horas_total())
 
     def __str__(self):
         return self.veiculo.modelo + '  -  ' + self.veiculo.placa
+
 
 
 class Mensalista(models.Model):
