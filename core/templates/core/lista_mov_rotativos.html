@@ -5,3 +5,10 @@
         <li> {{movimento}} </li>
     {% endfor %}
 </ul>
+
+<form action="{% url 'core_mov_rotativo_novo' %}" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <button type="submit">Cadastrar</button>
+</form>
