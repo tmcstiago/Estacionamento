@@ -6,4 +6,10 @@
 {% endfor %}
 </ul>
 
-{{form}}
+<form action="{% url 'core_pessoa_novo' %}" method="post">
+    {% csrf_token %}
+
+    {{form.as_p}}
+
+    <button type="submit">Cadastrar</button>
+</form>
