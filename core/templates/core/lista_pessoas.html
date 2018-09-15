@@ -2,7 +2,7 @@
 
 <ul>
 {% for pessoa in pessoas %}
-    <li>{{pessoa.nome}}</li>
+    <li><a href="{% url 'core_update_pessoa' pessoa.id %}">{{pessoa.nome}}</a></li>
 {% endfor %}
 </ul>
 
